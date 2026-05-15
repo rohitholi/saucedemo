@@ -1,0 +1,18 @@
+# Dependency directory (Very heavy, do not upload)
+node_modules/
+
+# Playwright execution artifacts
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Environment variables (Secrets)
+.env
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Build/Dist folders (if you compile TS to JS)
+dist/
