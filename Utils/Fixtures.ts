@@ -5,6 +5,7 @@ import { Inventory } from '../pages/inventory';
 import { CartPage } from '../pages/shopping';
 import { CheckoutPage } from '../pages/checkout';
 import { CheckoutCompletePage } from '../pages/checkoutComplete';
+import { FooterLinks } from '../pages/footerLinks';
 
 type MyFixtures = {
     login: Login;
@@ -13,6 +14,7 @@ type MyFixtures = {
     checkout: CheckoutPage;
     checkoutComplete: CheckoutCompletePage;
     userData: any;
+    footerLinks: FooterLinks;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -40,6 +42,10 @@ export const test = base.extend<MyFixtures>({
     checkoutComplete: async ({ page }, use) => {
         const checkoutCompletePage = new CheckoutCompletePage(page);
         await use(checkoutCompletePage);
+    },
+    footerLinks: async ({ page }, use) => {
+        const footerLinks = new FooterLinks(page);
+        await use(footerLinks);
     }
 });
 
