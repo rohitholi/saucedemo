@@ -3,11 +3,15 @@ import { DataProvider } from './TestDataReader';
 import { Login } from '../pages/login';
 import { Inventory } from '../pages/inventory';
 import { CartPage } from '../pages/shopping';
+import { CheckoutPage } from '../pages/checkout';
+import { CheckoutCompletePage } from '../pages/checkoutComplete';
 
 type MyFixtures = {
     login: Login;
     inventory: Inventory;
     cart: CartPage;
+    checkout: CheckoutPage;
+    checkoutComplete: CheckoutCompletePage;
     userData: any;
 };
 
@@ -28,6 +32,14 @@ export const test = base.extend<MyFixtures>({
     cart: async ({ page }, use) => {
         const cartPage = new CartPage(page);
         await use(cartPage);
+    },
+    checkout: async ({ page }, use) => {
+        const checkoutPage = new CheckoutPage(page);
+        await use(checkoutPage);
+    },
+    checkoutComplete: async ({ page }, use) => {
+        const checkoutCompletePage = new CheckoutCompletePage(page);
+        await use(checkoutCompletePage);
     }
 });
 
