@@ -6,7 +6,7 @@ test.describe('Inventory Tests', () => {
         await page.goto('/');
     }); 
 
-    test('All 6 products are displayed', async ({ page, login, inventory, userData }) =>
+    test('All 6 products are displayed',{ tag: ['@P0'] }, async ({ page, login, inventory, userData }) =>
          {
     page.on('dialog', async dialog => { dialog.accept() });
     await login.login(userData.validUser.username, userData.validUser.password);
@@ -14,7 +14,7 @@ test.describe('Inventory Tests', () => {
     await expect(inventory.inventoryOptions).toHaveCount(6);
     })
 
-    test('Sort products by Name (A to Z)', async ({ page, login, inventory, userData }) =>
+    test('Sort products by Name (A to Z)', { tag: ['@P2'] }, async ({ page, login, inventory, userData }) =>
     {
     page.on('dialog', async dialog => { dialog.accept() });
     await login.login(userData.validUser.username, userData.validUser.password);
@@ -22,7 +22,7 @@ test.describe('Inventory Tests', () => {
     await expect((await inventory.inventoryOptions.locator('.inventory_item_name').allInnerTexts()).sort()).toEqual([ 'Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt','Sauce Labs Fleece Jacket','Sauce Labs Onesie','Test.allTheThings() T-Shirt (Red)']); })
 
 
-    test('Sort products by Price (Low to High)', async ({ page, login, inventory, userData }) =>
+    test('Sort products by Price (Low to High)', { tag: ['@P2'] }, async ({ page, login, inventory, userData }) =>
     {
     page.on('dialog', async dialog => { dialog.accept() });
     await login.login(userData.validUser.username, userData.validUser.password);
@@ -31,7 +31,7 @@ test.describe('Inventory Tests', () => {
     await expect((await inventory.inventoryOptions.locator('.inventory_item_price').allTextContents())).toEqual(['$7.99', '$9.99', '$15.99', '$15.99', '$29.99', '$49.99']); })
 
  
-     test('Product detail page validation', async ({ page, login, inventory, userData }) =>
+     test('Product detail page validation',{ tag: ['@P1'] } ,async ({ page, login, inventory, userData }) =>
     {
     page.on('dialog', async dialog => { dialog.accept() });
     await login.login(userData.validUser.username, userData.validUser.password);
@@ -43,7 +43,7 @@ test.describe('Inventory Tests', () => {
     })
 
 
-   test('Add item to cart', async ({ page, login, inventory, userData }) => {
+   test('Add item to cart', { tag: ['@P1'] }, async ({ page, login, inventory, userData }) => {
     page.on('dialog', async dialog => { dialog.accept() });
     await login.login(userData.validUser.username, userData.validUser.password);
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  

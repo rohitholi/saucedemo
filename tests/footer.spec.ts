@@ -6,7 +6,7 @@ test.describe('Footer Tests', () => {
         await page.goto('/');
     });     
 
-    test('Verify footer content on inventory page', async ({ page, login, userData }) => {
+    test('Verify footer content on inventory page',{ tag: ['@P2'] }, async ({ page, login, userData }) => {
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -18,7 +18,7 @@ test.describe('Footer Tests', () => {
         await expect(footer.locator('.footer_copy')).toHaveText('© 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy');
     });
 
-    test('Verify footer links open correct pages', async ({ page, login, userData, footerLinks }) => {
+    test('Verify footer links open correct pages',{ tag: ['@P2'] }, async ({ page, login, userData, footerLinks }) => {
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  

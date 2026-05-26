@@ -5,7 +5,7 @@ test.describe('Shopping Tests', () => {
         await page.goto('/');
     });
 
-    test('Add one items to cart and verify cart count', async ({ page, login, inventory, userData }) => {
+    test('Add one items to cart and verify cart count',{ tag: ['@P0'] }, async ({ page, login, inventory, userData }) => {
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -13,7 +13,7 @@ test.describe('Shopping Tests', () => {
         await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
     })  
 
-   test('Add all items to cart and verify cart count', async ({ page, login, inventory, userData }) => {
+   test('Add all items to cart and verify cart count',{ tag: ['@P0'] }, async ({ page, login, inventory, userData }) => {
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -25,7 +25,7 @@ test.describe('Shopping Tests', () => {
         await expect(page.locator('.shopping_cart_badge')).toHaveText(totalItemsInCart.toString());
     })
 
-        test('Add and remove from cart and verify cart count', async ({ page, login, inventory, userData }) => {
+        test('Add and remove from cart and verify cart count', { tag: ['@P1'] }, async ({ page, login, inventory, userData }) => {
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -35,7 +35,7 @@ test.describe('Shopping Tests', () => {
         await expect(page.locator('.shopping_cart_badge')).not.toBeVisible();
     }) 
 
-        test('Add one items to cart and remove from cart page', async ({ page, login, inventory, userData }) => {
+        test('Add one items to cart and remove from cart page', { tag: ['@P1'] }, async ({ page, login, inventory, userData }) => {
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -46,7 +46,7 @@ test.describe('Shopping Tests', () => {
         await expect(page.locator('.shopping_cart_badge')).not.toBeVisible();
  })  
 
-     test('Continue Shopping Flow', async ({ page, login, inventory, userData,cart }) => {
+     test('Continue Shopping Flow', { tag: ['@P2'] }, async ({ page, login, inventory, userData,cart }) => {
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  

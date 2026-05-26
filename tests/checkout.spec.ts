@@ -6,7 +6,7 @@ test.describe('Checkout Page Tests', () => {
         await page.goto('/');
     });
 
-    test('should allow user to enter checkout information and continue', async ({ page, login, inventory, cart, checkout, userData }) => {        
+    test('should allow user to enter checkout information and continue',{ tag: ['@P0'] }, async ({ page, login, inventory, cart, checkout, userData }) => {        
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -23,7 +23,7 @@ test.describe('Checkout Page Tests', () => {
         await expect(page).toHaveURL('https://www.saucedemo.com/checkout-complete.html');  
     });
 
-    test('Cancel checkout at Step 1', async ({ page, login, inventory, cart, checkout, userData }) => {        
+    test('Cancel checkout at Step 1',{ tag: ['@P2'] }, async ({ page, login, inventory, cart, checkout, userData }) => {        
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -35,7 +35,7 @@ test.describe('Checkout Page Tests', () => {
         await expect(page).toHaveURL('https://www.saucedemo.com/cart.html'); 
     });
 
-    test('Should display error message when First Name is not entered', async ({ page, login, inventory, cart, checkout, userData }) => {        
+    test('Should display error message when First Name is not entered',{ tag: ['@P1'] }, async ({ page, login, inventory, cart, checkout, userData }) => {        
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -48,7 +48,7 @@ test.describe('Checkout Page Tests', () => {
  
     });
 
-    test('Should display error message when Last Name is not entered', async ({ page, login, inventory, cart, checkout, userData }) => {        
+    test('Should display error message when Last Name is not entered',{ tag: ['@P1'] }, async ({ page, login, inventory, cart, checkout, userData }) => {        
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -62,7 +62,7 @@ test.describe('Checkout Page Tests', () => {
  
     });
 
-        test('Should display error message when Postal Code is not entered', async ({ page, login, inventory, cart, checkout, userData }) => {        
+        test('Should display error message when Postal Code is not entered',{ tag: ['@P1'] }, async ({ page, login, inventory, cart, checkout, userData }) => {        
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -77,7 +77,7 @@ test.describe('Checkout Page Tests', () => {
  
     });
 
-        test('Verify Overview total', async ({ page, login, inventory, cart, checkout, userData }) => {        
+        test('Verify Overview total', { tag: ['@P0'] }, async ({ page, login, inventory, cart, checkout, userData }) => {        
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
@@ -110,7 +110,7 @@ expect(parseFloat(total.replace('Total: $', ''))).toBeCloseTo(calculatedTotal, 2
 await expect(page).toHaveURL('https://www.saucedemo.com/checkout-complete.html');  
     });
 
-        test('Finish page return to inventory', async ({ page, login, inventory, cart, checkout, userData,checkoutComplete }) => {        
+        test('Finish page return to inventory', { tag: ['@P1'] }, async ({ page, login, inventory, cart, checkout, userData,checkoutComplete }) => {        
         page.on('dialog', async dialog => { dialog.accept() });
         await login.login(userData.validUser.username, userData.validUser.password);
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');  
